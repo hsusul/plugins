@@ -7,11 +7,11 @@ description: Configure which models pstack uses per role and at what reasoning b
 
 Write `~/.cursor/rules/pstack-models.mdc`, an always-applied rule that sets pstack's model per role.
 
-## Claude Code host
+## Other hosts
 
-Claude Code does not load `~/.cursor/rules/`. When the host is Claude Code (the subagent tool is `Agent`, not `Task`), write the same content to `~/.claude/pstack-models.md` instead, using the `Agent` tool's model values (`opus`, `sonnet`, `haiku`, `fable`) as slugs. Then ask the user before adding a single `@~/.claude/pstack-models.md` import line to `~/.claude/CLAUDE.md`, so the mapping loads in every new session. Every step below applies unchanged, with that path in place of the `.mdc` file.
+On Claude Code, follow the setup-pstack section of `../../docs/harness/claude-code.md`. It writes `~/.claude/rules/pstack-models.md`, which Claude Code loads into every session.
 
-Codex and Antigravity follow the same pattern. Write the rule to the path in the model-rule row of `../poteto-mode/references/hosts.md`, with slugs that host's subagent tool accepts. Then ask before adding one line to the host's instructions file (`~/.codex/AGENTS.md` or `~/.gemini/GEMINI.md`) that tells it to read the rule.
+Codex and Antigravity have no rules folder. Write the rule to the path in the model-rule row of `../poteto-mode/references/hosts.md`, with slugs that host's subagent tool accepts. Then ask before adding one line to the host's instructions file (`~/.codex/AGENTS.md` or `~/.gemini/GEMINI.md`) that tells it to read the rule.
 
 ## Steps
 

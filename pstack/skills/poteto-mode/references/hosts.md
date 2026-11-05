@@ -1,6 +1,6 @@
 # Hosts
 
-pstack text names Cursor's tools. Read each name as the role it plays, and use your host's tool for that role. Find your host by the subagent tool you have.
+pstack text names Cursor's tools. Read each name as the role it plays, and use your host's tool for that role. Find your host by the subagent tool you have. On Claude Code, `../../../docs/harness/claude-code.md` is upstream's full adapter and wins over this table. Read it once per session.
 
 | Role | Cursor | Claude Code | Codex | Antigravity |
 |------|--------|-------------|-------|-------------|
@@ -10,7 +10,7 @@ pstack text names Cursor's tools. Read each name as the role it plays, and use y
 | Todolist | the todo tool | the host's task list | `update_plan` | the host's task list |
 | Load a skill | the skill catalog | Read `~/.claude/skills/<name>/SKILL.md` | Read `~/.agents/skills/<name>/SKILL.md` | Read `~/.gemini/config/skills/<name>/SKILL.md` |
 | Subagent definitions | `~/.cursor/agents/*.md` | `~/.claude/agents/*.md` | `~/.codex/agents/*.toml` | `~/.gemini/config/agents/*.md` |
-| Model rule from `/setup-pstack` | `~/.cursor/rules/pstack-models.mdc` | `~/.claude/pstack-models.md` | `~/.codex/pstack-models.md` | `~/.gemini/config/pstack-models.md` |
+| Model rule from `/setup-pstack` | `~/.cursor/rules/pstack-models.mdc` | `~/.claude/rules/pstack-models.md` | `~/.codex/pstack-models.md` | `~/.gemini/config/pstack-models.md` |
 | Isolated worker | a cloud agent | `Agent` with `isolation: "worktree"` | a `spawn_agent` worker in its own `git worktree` | a worker in its own `git worktree` |
 
 Read a skill's file even when the catalog hides it. pstack skills opt out of implicit invocation, so a missing catalog entry does not mean the skill is absent.
@@ -21,10 +21,10 @@ Model slugs differ per host. Read the role lines from your host's model rule. Wi
 
 | Role | Cursor | Claude Code | Codex | Antigravity |
 |------|--------|-------------|-------|-------------|
-| Judgment, prose, hardest tasks | `claude-opus-5-5-xhigh` | `opus` | the parent model | the parent model |
-| Code and swarm workers | `grok-4.7-xhigh-fast` | `sonnet` | the parent model | the parent model |
+| Judgment, prose, hardest tasks | `claude-opus-5-5-xhigh` | `opus xhigh` (`model: "opus"`, `effort: "xhigh"`) | the parent model | the parent model |
+| Code and swarm workers | `grok-4.7-xhigh-fast` | `inherit-parent` | the parent model | the parent model |
 
-Only Cursor takes reasoning-level and fast slugs, and only Cursor has a `readonly` flag. On other hosts skip those adjustments, and keep a read-only role read-only by its brief.
+Only Cursor has fast slugs and a `readonly` flag. Claude Code takes the reasoning level as `effort`. On Codex and Antigravity skip level and speed adjustments, and keep a read-only role read-only by its brief.
 
 ## A second model family
 
