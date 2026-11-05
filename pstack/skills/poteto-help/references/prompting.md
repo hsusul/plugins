@@ -41,6 +41,7 @@ A prompt states the intent and the check for done. The playbook supplies the ste
 - Write done as checks every iteration can run, and give `/loop` that predicate.
 - Ask for a fresh worktree off a named base.
 - Pre-answer what the agent would stop for, such as "don't ask me before committing".
+- List the standing ask-first gates in memory and CLAUDE.md, such as "ask before a full build". Pre-answer each one, or name a reply channel that works while you are away.
 - Ask for a decision log to audit later.
 - Give an exit: "if you're truly stuck after a few hours, stop and write up why".
 

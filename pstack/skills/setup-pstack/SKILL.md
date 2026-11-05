@@ -7,6 +7,10 @@ description: Configure which models pstack uses per role and at what reasoning b
 
 Write `~/.cursor/rules/pstack-models.mdc`, an always-applied rule that sets pstack's model per role.
 
+## Claude Code host
+
+Claude Code does not load `~/.cursor/rules/`. When the host is Claude Code (the subagent tool is `Agent`, not `Task`), write the same content to `~/.claude/pstack-models.md` instead, using the `Agent` tool's model values (`opus`, `sonnet`, `haiku`, `fable`) as slugs. Then ask the user before adding a single `@~/.claude/pstack-models.md` import line to `~/.claude/CLAUDE.md`, so the mapping loads in every new session. Every step below applies unchanged, with that path in place of the `.mdc` file.
+
 ## Steps
 
 ### 1. Detect available models

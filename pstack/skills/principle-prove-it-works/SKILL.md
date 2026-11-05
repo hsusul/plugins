@@ -14,6 +14,7 @@ Check the real thing, not a proxy:
 - Check process liveness directly, not indirectly through derived state
 - Read the actual value, not a cached or derived representation
 - When verification fails, suspect the observation method before suspecting the system
+- Trust a zero only if the same probe reads nonzero on a known-bad sample, measures the whole claim (a wait on any primitive, and the user's wait with the target lane under load), and actually ran the path. Report a path the probe never ran as unexercised, not 0
 
 ## Script the check when you can
 

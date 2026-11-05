@@ -30,12 +30,17 @@ When a worker must start from a non-default pushed branch, pass `cloud_base_bran
 
 Every brief stands alone. Include the goal, scope, exact slice or race arm, how to verify, and what to report. Reports use `PASS`, `ISSUES`, or `BLOCKED` with evidence. A worker that can prove a defect reports `ISSUES` and lists every issue it can prove, not only the first.
 
+A verification brief lets workers run code in a detached scratch worktree whenever the user's constraint allows it. Protecting the user's checkout does not ban scratch worktrees. It also tests inputs beyond the fix's own reproducer: neighbouring cases, or a reference oracle for boundary or calendar logic.
+
+A brief that may start a long probe states a runtime budget and requires a progress line at a fixed interval.
+
 If a worker drops out, proceed with N-1 and note it.
 
 ## Phase C: Aggregate
 
 Read the terminal results. Drop a result that does not record the SHAs and method its brief names, and respawn that worker once. After a second miss, record a gap. A gap does not count as a pass. For coverage, every required slice needs a result. For a race, apply the selection rule declared up front. Use first pass, rank all, or best-of. Do not paste raw worker dumps.
 
+Check an overdue worker's processes with `ps -Ao pid,etime,pcpu,command | grep <worktree>` before waiting longer.
 ## Phase D: Report
 
 Return one consolidated in-chat report with a result table, issue one-liners, gaps or dropouts, and the race rule when used.

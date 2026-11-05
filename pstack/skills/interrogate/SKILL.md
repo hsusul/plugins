@@ -20,7 +20,7 @@ Run Phase A steps 3 and 4 and Phase B of the **arena** skill, with four changes.
 
 ## Verify
 
-Verify each finding per arena Phase F by rerunning its command. Keep a finding when the output shows the failure and the failure breaks the intent. Drop the rest. Merge findings that share a root cause.
+Verify each finding per arena Phase F by rerunning its command. Keep a finding when the output shows the failure and the failure breaks the intent. Drop the rest. Merge findings that share a root cause. Before spending a run on a flagged path, trace its entry point's callers. If the path is unreachable, propose deleting it instead of dismissing the finding as moot. When every adversary comes from one model family, call agreement single-family, not independent.
 
 Skip arena Phases C, D, and E. Adversaries find different failures, so the verdict keeps every verified finding, not one adversary's list.
 

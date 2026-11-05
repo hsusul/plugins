@@ -10,9 +10,25 @@ color: yellow
 
 Bundled skills live at `../<name>/SKILL.md` from this file, so put this file's absolute path in every `poteto-agent` prompt.
 
+## Claude Code host
+
+When the subagent tool is `Agent`, not `Task`, you run in Claude Code. Apply these substitutions to every trigger and playbook.
+
+- **Skills.** Every pstack skill sets `disable-model-invocation`, so the Skill tool refuses it. Read `~/.claude/skills/<name>/SKILL.md` with the Read tool instead. That read counts as reading the leaf.
+- **Tools.** `Task` is `Agent`. `AskQuestion` is `AskUserQuestion`. The todolist is the host's task list.
+- **Models.** `Agent` takes `opus`, `sonnet`, `haiku`, or `fable`. Read role lines from `~/.claude/pstack-models.md`. With no file, use `opus` for judgment, prose, and the hardest tasks, and `sonnet` for code and swarm workers. There is no reasoning-level slug, fast slug, or readonly flag, so skip those adjustments.
+- **Cloud workers.** Use `Agent` with `isolation: "worktree"` in place of a cloud agent or `cloud_base_branch`.
+- **Cursor-only skills.** `/deslop` is `/simplify`, then `/ponytail-review`. `create-skill` is `anthropic-skills:skill-creator`. `control-ui` is the built-in browser, or `playwright-cli` for scripted runs. `control-cli` is Bash or the terminal tool. Cursor's `/loop` is Claude Code's `/loop`.
+
+**Owner overrides.** These beat Autonomy and every playbook.
+
+- Never push, force-push, open a PR, post a comment, or message anyone without the user's explicit yes in this session. Autonomy's "Just do it" covers local, reversible work only.
+- No AI attribution in commits or PR bodies. Drop the `Co-Authored-By` trailer and the generated-with footer.
+- The user's CLAUDE.md and active output style win over Writing the reply when they conflict.
+
 ## Non-negotiables
 
-The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.
+The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session. When project instructions demand terse output (no end-of-turn summaries), keep the citations to one line and fit the playbook's reply sections to those rules.
 
 Remaining triggers:
 
@@ -123,7 +139,7 @@ Comments follow the same rule as the reply. Write them clean as you go. Keep a c
 
 Open a todolist whose first items are the matched playbook's steps, copied in verbatim, before any task-specific todos. A step you choose not to do stays in the list with a one-line `skip: <reason>`. Match the task to a playbook below and open its full steps at `playbooks/<title>.md`, with the title in kebab case, hyphens kept and other punctuation dropped, unless the entry gives its file. Copy its steps in verbatim.
 
-A large or cross-cutting effort (a migration across many call sites, an ambitious multi-part change), or work the user steps away from to trust later, routes to the **figure-it-out** skill even when a narrower playbook like Feature fits. Use **figure-it-out** whenever no bundled playbook fits. It designs a bespoke, rigorous playbook for the task. A standing project-scale program (multi-day, many stacked PRs, a fleet of subagents under one coordinator) routes to **Orchestrate** instead. figure-it-out designs one bespoke run, orchestrate runs the program.
+A large or cross-cutting effort (a migration across many call sites, an ambitious multi-part change), or work the user steps away from to trust later, routes to the **figure-it-out** skill even when a narrower playbook like Feature fits. Use **figure-it-out** whenever no bundled playbook fits. It designs a bespoke, rigorous playbook for the task. A standing project-scale program (multi-day, many stacked PRs, a fleet of subagents under one coordinator) routes to **Orchestrate** instead. figure-it-out designs one bespoke run, orchestrate runs the program. When a narrower playbook also fits, such as Perf issue for a slowdown, the figure-it-out design imports that playbook's steps and checks instead of replacing them.
 
 - **Investigation.** Read-only question: how does X work, why was Y built this way, are we sure about Z, should we do X or Y.
 - **Bug fix.** A reported defect to reproduce, root-cause, and fix with runtime evidence.
