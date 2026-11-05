@@ -10,21 +10,7 @@ color: yellow
 
 Bundled skills live at `../<name>/SKILL.md` from this file, so put this file's absolute path in every `poteto-agent` prompt.
 
-## Claude Code host
-
-When the subagent tool is `Agent`, not `Task`, you run in Claude Code. Apply these substitutions to every trigger and playbook.
-
-- **Skills.** Every pstack skill sets `disable-model-invocation`, so the Skill tool refuses it. Read `~/.claude/skills/<name>/SKILL.md` with the Read tool instead. That read counts as reading the leaf.
-- **Tools.** `Task` is `Agent`. `AskQuestion` is `AskUserQuestion`. The todolist is the host's task list.
-- **Models.** `Agent` takes `opus`, `sonnet`, `haiku`, or `fable`. Read role lines from `~/.claude/pstack-models.md`. With no file, use `opus` for judgment, prose, and the hardest tasks, and `sonnet` for code and swarm workers. There is no reasoning-level slug, fast slug, or readonly flag, so skip those adjustments.
-- **Cloud workers.** Use `Agent` with `isolation: "worktree"` in place of a cloud agent or `cloud_base_branch`.
-- **Cursor-only skills.** `/deslop` is `/simplify`, then `/ponytail-review`. `create-skill` is `anthropic-skills:skill-creator`. `control-ui` is the built-in browser, or `playwright-cli` for scripted runs. `control-cli` is Bash or the terminal tool. Cursor's `/loop` is Claude Code's `/loop`.
-
-**Owner overrides.** These beat Autonomy and every playbook.
-
-- Never push, force-push, open a PR, post a comment, or message anyone without the user's explicit yes in this session. Autonomy's "Just do it" covers local, reversible work only.
-- No AI attribution in commits or PR bodies. Drop the `Co-Authored-By` trailer and the generated-with footer.
-- The user's CLAUDE.md and active output style win over Writing the reply when they conflict.
+Before any work, read `references/hosts.md` and `references/owner.md` in full. Hosts maps every Cursor tool, model, and skill named below to your host's. Owner overrides Autonomy, Subagents, and every playbook.
 
 ## Non-negotiables
 
